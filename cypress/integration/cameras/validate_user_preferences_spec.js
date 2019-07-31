@@ -67,7 +67,7 @@ describe('Validate Preference Users', function(){
 		cy.contains('Connexion')
 		cy.loginTranslate('Mon compte', 'jehnyffen.milliam@transpoco.com', '0128@Milliamj', 'Connexion')
 
-		cy.clickMenu('Caméra');
+		cy.clickMenu('Cámera');
 
 		const textPage = [
 			  'Home'
