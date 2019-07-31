@@ -1,0 +1,8 @@
+{
+  "defaultCommandTimeout": 200000,
+  "pageLoadTimeout": 200000,
+  "responseTimeout": 200000,
+  "screenshotsFolder": "cypress/screenshots",
+  "videosFolder": "cypress/videos",
+  "projectId": "dcxpf9"
+}
