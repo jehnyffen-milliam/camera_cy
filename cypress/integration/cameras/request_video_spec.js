@@ -1,7 +1,6 @@
-describe('Validate Cameras Filters', function(){
+describe('Validate Request Video', function(){
 	before(function () {
 		cy.visit('http://move.transpoco.net')
-		cy.contains('Login')
 		cy.login('jehnyffen.milliam@transpoco.com', '0128@Milliamj')
 
 		cy.menuCamera();
@@ -24,7 +23,6 @@ describe('Validate Cameras Filters', function(){
 
 	it('Request Video Manualy', function(){
 		// cy.visit('http://move.transpoco.net')
-		// cy.contains('Login')
 		// cy.login('jehnyffen.milliam@transpoco.com', '0128@Milliamj')
 		// cy.menuCamera();
 		const setTime = () => {
@@ -38,18 +36,24 @@ describe('Validate Cameras Filters', function(){
 		cy.get('.modal-body').contains('[VINCENTFMT]  Vincent FMT').click()
 		cy.setDateRequestVideo('23rd Jul 19')
 		cy.get('*').contains('Select a Date').click();
-		cy.setTimeRequestVideo('01:00:15')
+		// cy.setTimeRequestVideo('01:00:15')
 		// cy.wrap({changeTime: setTime}).invoke('changeTime')
-		// cy.get('#confirm_button').contains('Request Video').click()
-		// cy.get('*').contains('New Message')
-		// cy.get('*').contains('Video requested. You will be notified when it is ready to download');
+		cy.get('#confirm_button').contains('Request Video').click()
+		cy.get('*').contains('New Message')
+		cy.get('*').contains('Video requested. You will be notified when it is ready to download');
+		cy.wait(2000)
+		cy.clickAllVehicleGoups()
+		cy.clickStartDate('23/07/2019')
+		cy.clickEndDate('23/07/2019')
 
-		// cy.clickAllVehicleGoups()
-		// cy.clickStartDate('24/07/2019')
-		// cy.clickEndDate('24/07/2019')
-
-		// cy.clickButton('Apply Filter');
-		
+		cy.clickButton('Apply Filter')
+		cy.wait(2000)
+		cy.get('*').contains('Manual request')
 	})
+
+	after(function() {
+	    // runs once after all tests in the block
+	    cy.logOut('Log out')
+	 })
 
 })

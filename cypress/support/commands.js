@@ -25,14 +25,28 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('login', (email, pass) => {
-	cy.contains('Login to your account')
-  	cy.get('#username').type(email)
-  	cy.get('#password').type(pass)
-  	cy.get('button').contains('Login').click()
+    if(!cy.get('#username')){
+      cy.logOut('Log out')
+      cy.wait(2000)
+    }
+
+    var textLogin = '';
+    if(cy.get('button').contains('Login')){
+      textLogin = 'Login';
+    } else if(cy.get('button').contains('Connexion')) {
+      textLogin = 'Connexion';
+    } else {
+      textLogin = 'Iniciar sesión';
+    }
+    cy.get('#username').type(email)
+    cy.get('#password').type(pass)
+    cy.get('button').contains(textLogin).click()
     cy.contains('Transpoco')
     cy.contains('Vehicle Group')
     cy.wait(2000)
     cy.screenshot('Home', 'fullPage')
+    
+    
 })
 
 Cypress.Commands.add('loginTranslate', (title, email, pass, textLogin) => {
@@ -49,9 +63,9 @@ Cypress.Commands.add('loginTranslate', (title, email, pass, textLogin) => {
 Cypress.Commands.add('menuCamera', () => {
 	cy.contains('Camera')
   cy.get('a').contains('Camera').click({ force: true }) // this comand force click in element even this element stay disable or display none by css
-  // cy.wait(2000)
+  cy.wait(2000)
   cy.contains('Vehicle')
-  cy.screenshot('Camera', 'fullPage')
+  cy.screenshot('Camera', 'viewport')
 })
 
 Cypress.Commands.add('clickMenu', (menu) => {
@@ -60,7 +74,11 @@ Cypress.Commands.add('clickMenu', (menu) => {
   
 })
 
-Cypress.Commands.add('testByTextArray', array => {
+Cypress.Commands.add('logOut', (text) => {
+  cy.get('a').contains(text).click({ force: true })
+})
+
+Cypress.Commands.add('verifyTextArray', array => {
   array.forEach(text => {
     cy.contains(text)
   });
@@ -100,7 +118,7 @@ Cypress.Commands.add('setTimeRequestVideo', (h) => {
 })
 
 Cypress.Commands.add('clickButton', (textButton) => {
-  cy.get('button').contains(textButton).click()
+  cy.get('button').contains(textButton).click({force:true})
 })
 
 Cypress.Commands.add('clickButtonByName', (textName) => {

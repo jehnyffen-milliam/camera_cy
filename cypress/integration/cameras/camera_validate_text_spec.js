@@ -2,7 +2,6 @@ describe('Validate Cameras Text', function(){
 	
 	it('Access login page', function() {
 		cy.visit('http://move.transpoco.net')
-		cy.contains('Login')
 		cy.login('jehnyffen.milliam@transpoco.com', '0128@Milliamj')
 
 	})
@@ -26,9 +25,10 @@ describe('Validate Cameras Text', function(){
 			 , 'Filter Options'
 		]
 
-		cy.expectTextArray(textsPage)
+		// cy.expectTextArray(textsPage)
+		cy.verifyTextArray(textsPage)
 
-		cy.get('.dotted').contains('All Vehicle Groups').click()
+		cy.get('.dotted').contains('All Vehicle Groups').click({force:true})
 		cy.wait(2000)
 		cy.clickButton('Close');
 
@@ -42,9 +42,15 @@ describe('Validate Cameras Text', function(){
 			 , 'Cancel'
 		]
 
-		cy.expectTextArray(textsRequest)
+		// cy.expectTextArray(textsRequest)
+		cy.verifyTextArray(textsRequest)
 		cy.clickButton('Cancel')
 		// cy.get('#vehicles_list > div > div > div').click({force:true})
 		// cy.get('*').contains('161WW1467').click({force:true})
 	})
+
+	after(function() {
+	    // runs once after all tests in the block
+	    cy.logOut('Log out')
+	 })
 })
