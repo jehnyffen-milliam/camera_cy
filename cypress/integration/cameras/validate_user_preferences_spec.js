@@ -1,7 +1,12 @@
+const user = Cypress.env('user')
+const pass = Cypress.env('pass')
+const userName = 'jehnyffen'
 describe('Validate Preference Users KM and Miles', function(){
 	beforeEach(function () {
-		cy.visit('http://move.transpoco.net')
-		cy.login('user2Jehnycy@email.ghostinspector.com', 'qwer1234!')
+
+		cy.visit('/')
+
+		cy.login(user, pass)
 
 	})
 
@@ -11,7 +16,7 @@ describe('Validate Preference Users KM and Miles', function(){
 		cy.contains('Users & Permissions')
 		cy.get('a').contains('Users').click({ force: true })
 		cy.contains('Search:');
-		cy.get('input[type="search"]').type('User 2 Jehny CY')
+		cy.get('input[type="search"]').type(user) //here search by email, is better.
 		cy.get('.ui-button-text').contains('Edit').click()
 		cy.contains('User Preferences:')
 		// cy.get('#password2').type('0128@Milliamj')
@@ -21,11 +26,11 @@ describe('Validate Preference Users KM and Miles', function(){
 
 		// This steps is because in execution time the system redirect
 		// for another URL where the system not found
-		cy.visit('https://move.transpoco.net/settings/users/users.php')
+		cy.visit(Cypress.env('baseUrl')+'/settings/users/users.php')
 		cy.contains('Search:')
 
 		cy.logOut('Log out')
-		cy.login('user2Jehnycy@email.ghostinspector.com', 'qwer1234!')
+		cy.login(user, pass)
 
 		cy.menuCamera();
 
@@ -43,7 +48,7 @@ describe('Validate Preference Users KM and Miles', function(){
 		cy.contains('Users & Permissions')
 		cy.get('a').contains('Users').click({ force: true })
 		cy.contains('Search:');
-		cy.get('input[type="search"]').type('User 2 Jehny CY')
+		cy.get('input[type="search"]').type(user) //here search by email, is better.
 		cy.get('.ui-button-text').contains('Edit').click()
 		cy.contains('User Preferences:')
 		// cy.get('#password2').type('0128@Milliamj')
@@ -52,11 +57,11 @@ describe('Validate Preference Users KM and Miles', function(){
 
 		// This steps is because in execution time the system redirect
 		// for another URL where the system not found
-		cy.visit('https://move.transpoco.net/settings/users/users.php')
+		cy.visit(Cypress.env('baseUrl')+'/settings/users/users.php')
 		cy.contains('Search:')
 
 		cy.logOut('Log out')
-		cy.login('user2Jehnycy@email.ghostinspector.com', 'qwer1234!')
+		cy.login(user, pass)
 
 		cy.menuCamera()
 
@@ -74,7 +79,7 @@ describe('Validate Preference Users KM and Miles', function(){
 		cy.contains('Users & Permissions')
 		cy.get('a').contains('Users').click({ force: true })
 		cy.contains('Search:');
-		cy.get('input[type="search"]').type('User 2 Jehny CY')
+		cy.get('input[type="search"]').type(user) //here search by email, is better.
 		cy.get('.ui-button-text').contains('Edit').click()
 		cy.contains('User Preferences:')
 		// cy.get('#password2').type('0128@Milliamj')
@@ -83,11 +88,11 @@ describe('Validate Preference Users KM and Miles', function(){
 
 		// This steps is because in execution time the system redirect
 		// for another URL where the system not found
-		cy.visit('https://move.transpoco.net/settings/users/users.php')
+		cy.visit(Cypress.env('baseUrl')+'/settings/users/users.php')
 		cy.contains('Search:')
 
 		cy.logOut('Log out')
-		cy.login('user2Jehnycy@email.ghostinspector.com', 'qwer1234!')
+		cy.login(user, pass)
 
 		cy.menuCamera();
 

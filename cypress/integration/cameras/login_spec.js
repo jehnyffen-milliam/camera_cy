@@ -1,12 +1,13 @@
+const user = Cypress.env('user')
+const pass = Cypress.env('pass')
 describe('Login move', function() {
-	
-	it('Access login page', function() {
-		cy.visit('http://move.transpoco.net')
+	before(function () {
 
+		cy.visit('/')
 	})
 
-	it('Login in application', function() {
-		cy.login('jehnyffen.milliam@transpoco.com', '0128@Milliamj')
+	it('Access Login application', function() {
+		cy.login(user, pass)
 
 	})
 

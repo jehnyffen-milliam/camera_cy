@@ -1,9 +1,11 @@
-const user = 'jehnyffen.milliam@transpoco.com'
-const pass = '0128@Milliamj'
+const user = Cypress.env('user')
+const pass = Cypress.env('pass')
 
 describe('Validate Screenshot', function(){
 	before(function () {
-		cy.visit('http://move.transpoco.net')
+
+		cy.visit('/')
+
 		cy.login(user, pass)
 
 		cy.menuCamera();

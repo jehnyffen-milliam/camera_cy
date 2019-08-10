@@ -1,7 +1,12 @@
+const user = Cypress.env('user')
+const pass = Cypress.env('pass')
+
 describe('Validate Cameras Filters', function(){
 	before(function () {
-		cy.visit('http://move.transpoco.net')
-		cy.login('jehnyffen.milliam@transpoco.com', '0128@Milliamj')
+
+		cy.visit('/')
+
+		cy.login(user, pass)
 	})
 
 	it('Click Menu Camera', function() {
@@ -37,7 +42,7 @@ describe('Validate Cameras Filters', function(){
 
 	it('Set group Vehicles without vehicles', function(){
 		cy.get('#vehicle_groups_list').contains('Filter by vehicle group').click({force:true})
-		cy.get('*').contains('AL TEST').click({force:true})
+		cy.get('*').contains('Combitest').click({force:true})
 		cy.get('*').contains('This group does not have any vehicles.')
 		cy.screenshot('message-validate', 'fullPage')
 		cy.clickButton('Apply Filter')
@@ -47,10 +52,10 @@ describe('Validate Cameras Filters', function(){
 	})
 
 	it('Set vehicle without information', function(){
-		cy.get('#vehicle_groups_list').contains('AL TEST').click({force:true})
-		cy.get('.Select-value').contains('AL TEST').click({force:true})
+		cy.get('#vehicle_groups_list').contains('Combitest').click({force:true})
+		cy.get('.Select-value').contains('Combitest').click({force:true})
 		cy.wait(1000)
-		cy.get('*').contains('Active vehicles').click({force:true})
+		cy.get('*').contains('Camille Test').click({force:true})
 		cy.get('.dotted').contains('All Vehicles').click({force:true})
 		cy.wait(2000)
 		cy.get('#vehicles_list').contains('Filter by vehicle').click({force:true})
@@ -63,14 +68,17 @@ describe('Validate Cameras Filters', function(){
 	})
 
 	it('Validate List Vehicle goups', function(){
-		cy.get('.dotted').contains('Active vehicles').click({force:true})
-		cy.get('.Select-value').contains('Active vehicles').click({force:true})
+		cy.get('.dotted').contains('Camille Test').click({force:true})
+		cy.get('.Select-value').contains('Camille Test').click({force:true})
 		const listGroup = [
 			  'Active vehicles'
 			, 'AE TEST'
 			, 'Aer Lingus RFID'
 			, 'AL TEST'
 			, 'Barry Vehicle Group'
+			, 'Camera'
+			, 'Camille Test'
+			, 'Combitest'
 		]
 
 		// cy.expectTextArray(listGroup)

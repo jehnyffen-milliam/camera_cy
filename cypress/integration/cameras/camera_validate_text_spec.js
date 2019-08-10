@@ -1,8 +1,11 @@
+const user = Cypress.env('user')
+const pass = Cypress.env('pass')
 describe('Validate Cameras Text', function(){
 	
 	it('Access login page', function() {
-		cy.visit('http://move.transpoco.net')
-		cy.login('jehnyffen.milliam@transpoco.com', '0128@Milliamj')
+		cy.visit('/')
+
+		cy.login(user, pass)
 
 	})
 

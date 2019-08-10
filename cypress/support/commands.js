@@ -44,7 +44,7 @@ Cypress.Commands.add('login', (email, pass) => {
     cy.contains('Transpoco')
     cy.contains('Vehicle Group')
     cy.wait(2000)
-    cy.screenshot('Home', 'fullPage')
+    // cy.screenshot('Home', 'fullPage')
     
     
 })
@@ -57,7 +57,7 @@ Cypress.Commands.add('loginTranslate', (title, email, pass, textLogin) => {
     cy.contains('Transpoco')
     cy.contains('Vehicle Group')
     cy.wait(2000)
-    cy.screenshot('Home', 'fullPage')
+    // cy.screenshot('Home', 'fullPage')
 })
 
 Cypress.Commands.add('menuCamera', () => {
@@ -65,7 +65,7 @@ Cypress.Commands.add('menuCamera', () => {
   cy.get('a').contains('Camera').click({ force: true }) // this comand force click in element even this element stay disable or display none by css
   cy.wait(2000)
   cy.contains('Vehicle')
-  cy.screenshot('Camera', 'viewport')
+  // cy.screenshot('Camera', 'viewport')
 })
 
 Cypress.Commands.add('clickMenu', (menu) => {

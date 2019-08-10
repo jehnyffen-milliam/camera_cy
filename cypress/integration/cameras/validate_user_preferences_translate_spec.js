@@ -1,10 +1,12 @@
-const user = 'jehnyffen.milliam@transpoco.com'
-const pass = '0128@Milliamj'
+const user = Cypress.env('user')
+const pass = Cypress.env('pass')
 const userName = 'jehnyffen'
 describe('Validate Preference Users Translate', function(){
 
 	before(function () {
-		cy.visit('http://move.transpoco.net')
+
+		cy.visit('/')
+
 		cy.login(user, pass)
 
 	})
@@ -15,7 +17,7 @@ describe('Validate Preference Users Translate', function(){
 		cy.contains('Users & Permissions')
 		cy.get('a').contains('Users').click({ force: true })
 		cy.contains('Search:');
-		cy.get('input[type="search"]').type(userName)
+		cy.get('input[type="search"]').type(user) //here search by email, is better.
 		cy.get('.ui-button-text').contains('Edit').click()
 		cy.contains('User Preferences:')
 		// cy.get('#password2').type('0128@Milliamj')
@@ -24,7 +26,7 @@ describe('Validate Preference Users Translate', function(){
 
 		// This steps is because in execution time the system redirect
 		// for another URL where the system not found
-		cy.visit('https://move.transpoco.net/settings/users/users.php')
+		cy.visit(Cypress.env('baseUrl')+'/settings/users/users.php')
 		cy.contains('Search:')
 
 		cy.logOut('Log out')
@@ -57,16 +59,16 @@ describe('Validate Preference Users Translate', function(){
 		cy.contains('Utilisateurs & Autorisations')
 		cy.get('a').contains('Utilisateurs').click({ force: true })
 		cy.contains('Rechercher');
-		cy.get('input[type="search"]').type(userName)
+		cy.get('input[type="search"]').type(user) //here search by email, is better.
 		cy.get('.ui-button-text').contains('Modifier').click()
 		cy.contains('Préférences Utilisateur :')
 		// cy.get('#password2').type('0128@Milliamj')
 		cy.get('select[name="prefered_locale_lang_id"]').select('8')
 		cy.clickButton('Mise à jour de l’utilisateur')
-
+		cy.wait(1000)
 		// This steps is because in execution time the system redirect
 		// for another URL where the system not found
-		cy.visit('https://move.transpoco.net/fr/settings/users/users.php')
+		cy.visit(Cypress.env('baseUrl')+'/settings/users/users.php')
 		cy.contains('Rechercher')
 
 		cy.logOut('Déconnectez-vous')
@@ -97,7 +99,7 @@ describe('Validate Preference Users Translate', function(){
 		cy.contains('Usuarios y permisos')
 		cy.get('a').contains('Usuarios').click({ force: true })
 		cy.contains('Buscar');
-		cy.get('input[type="search"]').type(userName)
+		cy.get('input[type="search"]').type(user) //here search by email, is better.
 		cy.get('.ui-button-text').contains('Editar').click()
 		cy.contains('Preferencias del usuario:')
 		// cy.get('#password2').type('0128@Milliamj')
@@ -106,7 +108,7 @@ describe('Validate Preference Users Translate', function(){
 
 		// This steps is because in execution time the system redirect
 		// for another URL where the system not found
-		cy.visit('https://move.transpoco.net/es/settings/users/users.php')
+		cy.visit(Cypress.env('baseUrl')+'/settings/users/users.php')
 		cy.contains('Buscar:')
 
 		cy.logOut('Cerrar sesión')

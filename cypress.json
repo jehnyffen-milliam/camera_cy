@@ -4,5 +4,10 @@
   "responseTimeout": 100000,
   "screenshotsFolder": "cypress/screenshots",
   "videosFolder": "cypress/videos",
+  "videoUploadOnPasses": false,
+
+  "viewportWidth": 1960,
+  "viewportHeight": 1080,
+  "baseUrl": "http://move.transpoco.net",
   "projectId": "gkqxo1"
 }
