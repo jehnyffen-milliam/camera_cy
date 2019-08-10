@@ -1,4 +1,4 @@
-FROM cypress/base:8 as e2eBuild
+FROM cypress/included:3.4.0
 MAINTAINER Milliam Jehnyffen
 
 # Run tests
