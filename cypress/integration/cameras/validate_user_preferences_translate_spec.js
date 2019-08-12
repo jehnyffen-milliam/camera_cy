@@ -108,7 +108,7 @@ describe('Validate Preference Users Translate', function(){
 
 		// This steps is because in execution time the system redirect
 		// for another URL where the system not found
-		cy.visit('/en/settings/users/users.php')
+		cy.visit('/es/settings/users/users.php')
 		cy.contains('Buscar:')
 
 		cy.logOut('Cerrar sesión')
