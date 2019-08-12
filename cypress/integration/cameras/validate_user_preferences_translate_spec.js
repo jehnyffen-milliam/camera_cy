@@ -26,7 +26,7 @@ describe('Validate Preference Users Translate', function(){
 
 		// This steps is because in execution time the system redirect
 		// for another URL where the system not found
-		cy.visit(Cypress.env('baseUrl')+'/settings/users/users.php')
+		cy.visit('/settings/users/users.php')
 		cy.contains('Search:')
 
 		cy.logOut('Log out')
@@ -68,7 +68,7 @@ describe('Validate Preference Users Translate', function(){
 		cy.wait(1000)
 		// This steps is because in execution time the system redirect
 		// for another URL where the system not found
-		cy.visit(Cypress.env('baseUrl')+'/settings/users/users.php')
+		cy.visit('/fr/settings/users/users.php')
 		cy.contains('Rechercher')
 
 		cy.logOut('Déconnectez-vous')
@@ -108,7 +108,7 @@ describe('Validate Preference Users Translate', function(){
 
 		// This steps is because in execution time the system redirect
 		// for another URL where the system not found
-		cy.visit(Cypress.env('baseUrl')+'/settings/users/users.php')
+		cy.visit('/en/settings/users/users.php')
 		cy.contains('Buscar:')
 
 		cy.logOut('Cerrar sesión')

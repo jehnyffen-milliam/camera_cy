@@ -26,7 +26,7 @@ describe('Validate Preference Users KM and Miles', function(){
 
 		// This steps is because in execution time the system redirect
 		// for another URL where the system not found
-		cy.visit(Cypress.env('baseUrl')+'/settings/users/users.php')
+		cy.visit('settings/users/users.php')
 		cy.contains('Search:')
 
 		cy.logOut('Log out')
@@ -57,7 +57,7 @@ describe('Validate Preference Users KM and Miles', function(){
 
 		// This steps is because in execution time the system redirect
 		// for another URL where the system not found
-		cy.visit(Cypress.env('baseUrl')+'/settings/users/users.php')
+		cy.visit('settings/users/users.php')
 		cy.contains('Search:')
 
 		cy.logOut('Log out')
@@ -88,7 +88,7 @@ describe('Validate Preference Users KM and Miles', function(){
 
 		// This steps is because in execution time the system redirect
 		// for another URL where the system not found
-		cy.visit(Cypress.env('baseUrl')+'/settings/users/users.php')
+		cy.visit('settings/users/users.php')
 		cy.contains('Search:')
 
 		cy.logOut('Log out')
@@ -104,7 +104,7 @@ describe('Validate Preference Users KM and Miles', function(){
 		cy.get('*').should('contain', 'km/h')
 	})
 
-	afterEach(function() {
+	after(function() {
 	    // runs once after all tests in the block
 	    cy.logOut('Log out')
 	 })
