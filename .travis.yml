@@ -1,9 +1,31 @@
 sudo: required
 
-language: python
+language: ruby
 
 services:
   - docker
 
-before_install:
+install:
   - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=bda27b52-019f-4fe1-a879-20202a07f99d cypress/included:3.4.0 --record
+  # Put the key of your Cypress dashboard on CYPRESS_RECORD_KEY variable without ""
+  
+env:
+    - TEST_SUITE=integration
+#  global:
+#    - CI_NODE_TOTAL=2
+#  matrix:
+#    - CI_NODE_INDEX=0
+#    - CI_NODE_INDEX=1
+
+script: "bundle exec rake test:$TEST_SUITE"
+
+#script:
+#  - bundle exec rake test
+
+notifications: 
+  email:
+    recipients:
+      - jehnyffen.milliam@transpoco.com
+      
+    on_success: always
+    on_failure: always
