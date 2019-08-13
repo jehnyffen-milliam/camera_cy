@@ -1,7 +1,5 @@
 sudo: required
 
-language: ruby
-
 services:
   - docker
 
@@ -17,7 +15,8 @@ env:
 #    - CI_NODE_INDEX=0
 #    - CI_NODE_INDEX=1
 
-script: "bundle exec rake test:$TEST_SUITE"
+script: 
+     - bundle exec rake test:$TEST_SUITE
 
 #script:
 #  - bundle exec rake test
@@ -29,3 +28,4 @@ notifications:
       
     on_success: always
     on_failure: always
+    
