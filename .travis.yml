@@ -5,7 +5,6 @@ services:
 
 install:
   - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=bda27b52-019f-4fe1-a879-20202a07f99d cypress/included:3.4.0 --record
-  # Put the key of your Cypress dashboard on CYPRESS_RECORD_KEY variable without ""
   
 env:
     - TEST_SUITE=integration
@@ -17,9 +16,6 @@ env:
 
 script: 
      - bundle exec rake test:$TEST_SUITE
-
-#script:
-#  - bundle exec rake test
 
 notifications: 
   email:
