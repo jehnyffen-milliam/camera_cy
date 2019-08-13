@@ -1,5 +1,5 @@
-const user = Cypress.env('user')
-const pass = Cypress.env('pass')
+const user = Cypress.env('user4')
+const pass = Cypress.env('pass4')
 const userName = 'jehnyffen'
 describe('Validate Preference Users Translate', function(){
 

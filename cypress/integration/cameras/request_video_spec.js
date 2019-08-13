@@ -35,15 +35,17 @@ describe('Validate Request Video', function(){
 		cy.get('*').contains('Request Video')
 		cy.wait(4000)
 		cy.get('*').contains('Request Video').click({force:true})
-		
+		cy.wait(1000)
 		cy.get('.modal-title').contains('Request Video')
 		cy.get('.modal-body').contains('Select a vehicle').click()
 		cy.get('.modal-body').contains('161WW1467').click()
 		cy.setDateRequestVideo('23rd Jul 19')
 		cy.get('*').contains('Select a Date').click();
+		cy.wait(1000)
 		// cy.setTimeRequestVideo('01:00:15')
 		// cy.wrap({changeTime: setTime}).invoke('changeTime')
 		cy.get('#confirm_button').contains('Request Video').click()
+		cy.wait(1000)
 		cy.get('*').contains('New Message')
 		cy.get('*').contains('Video requested. You will be notified when it is ready to download');
 		cy.wait(4000)
@@ -54,6 +56,7 @@ describe('Validate Request Video', function(){
 		cy.clickButton('Apply Filter')
 		cy.wait(4000)
 		cy.get('*').contains('Manual request')
+		cy.wait(2000)
 	})
 
 	after(function() {

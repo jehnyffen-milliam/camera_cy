@@ -1,5 +1,5 @@
-const user = Cypress.env('user')
-const pass = Cypress.env('pass')
+const user = Cypress.env('user3')
+const pass = Cypress.env('pass3')
 const userName = 'jehnyffen'
 describe('Validate Preference Users KM and Miles', function(){
 	beforeEach(function () {
