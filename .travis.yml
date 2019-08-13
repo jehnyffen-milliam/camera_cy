@@ -5,16 +5,6 @@ services:
   
 install:
   - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=bda27b52-019f-4fe1-a879-20202a07f99d cypress/included:3.4.0 --record --parallel --ci-build-id travis
-
-env:
-    - TEST_SUITE=integration
-    - TESTFOLDER=cameras/camera_validate_text_spec.js
-    - TESTFOLDER=cameras/login_spec.js
-    - TESTFOLDER=cameras/request_video_spec.js
-    - TESTFOLDER=cameras/validate_filters_spec.js
-    - TESTFOLDER=cameras/validate_screenshot_spec.js
-    - TESTFOLDER=cameras/validate_user_preferences_spec.js
-    - TESTFOLDER=cameras/validate_user_preferences_translate_spec.js
     
 notifications: 
   email:
