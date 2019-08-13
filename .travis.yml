@@ -1,7 +1,3 @@
-# Travis-CI
-
-sudo: required
-
 language: python
 
 services:
