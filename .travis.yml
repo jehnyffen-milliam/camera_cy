@@ -23,6 +23,7 @@ notifications:
   email:
     recipients:
       - jehnyffen.milliam@transpoco.com
+      - camille.nogueira@transpoco.com
       
     on_success: always
     on_failure: always
