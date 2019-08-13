@@ -1,6 +1,8 @@
 sudo: required
 
-language: python
+language: node_js
+node_js:
+  - 10
 
 services:
   - docker
