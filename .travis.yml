@@ -1,30 +1,9 @@
-sudo: required
+language: bash
 
-language: python
+sudo: required
 
 services:
   - docker
 
 install:
-  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=bda27b52-019f-4fe1-a879-20202a07f99d cypress/included:3.4.0 --record --parallel
-  
-env:
-    - TEST_SUITE=integration
-  global:
-    - CI_NODE_TOTAL=2
-  matrix:
-    - CI_NODE_INDEX=0
-    - CI_NODE_INDEX=1
-
-script: 
-     - bundle exec rake test:$TEST_SUITE
-
-notifications: 
-  email:
-    recipients:
-      - jehnyffen.milliam@transpoco.com
-      - camille.nogueira@transpoco.com
-      
-    on_success: always
-    on_failure: always
-    
+  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=bda27b52-019f-4fe1-a879-20202a07f99d cypress/included:3.4.0 --record
