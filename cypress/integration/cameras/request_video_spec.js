@@ -32,6 +32,14 @@ describe('Validate Request Video', function(){
 		  document.getElementsById("time").click()
 		  document.getElementsById("time").textContent = "01:00:15"
 		}
+		cy.wait(4000)
+		cy.clickAllVehicleGoups()
+		cy.clickStartDate('13/08/2019')
+		cy.clickEndDate('14/08/2019')
+
+		cy.clickButton('Apply Filter')
+		cy.wait(3000)
+		cy.get('*').contains('161WW1467')
 		cy.get('*').contains('Request Video')
 		cy.wait(4000)
 		cy.get('*').contains('Request Video').click({force:true})
@@ -39,29 +47,24 @@ describe('Validate Request Video', function(){
 		cy.get('.modal-title').contains('Request Video')
 		cy.get('.modal-body').contains('Select a vehicle').click()
 		cy.get('.modal-body').contains('161WW1467').click()
-		cy.setDateRequestVideo('23rd Jul 19')
+		cy.setDateRequestVideo('13th Aug 19')
 		cy.get('*').contains('Select a Date').click();
 		cy.wait(1000)
-		// cy.setTimeRequestVideo('01:00:15')
+		cy.setTimeRequestVideo('02:05:16')
 		// cy.wrap({changeTime: setTime}).invoke('changeTime')
 		cy.get('#confirm_button').contains('Request Video').click()
-		cy.wait(1000)
-		cy.get('*').contains('New Message')
-		cy.get('*').contains('Video requested. You will be notified when it is ready to download');
-		cy.wait(4000)
-		cy.clickAllVehicleGoups()
-		cy.clickStartDate('23/07/2019')
-		cy.clickEndDate('23/07/2019')
-
-		cy.clickButton('Apply Filter')
-		cy.wait(4000)
-		cy.get('*').contains('Manual request')
-		cy.wait(2000)
+		// cy.get('*').contains('New Message')
+		// cy.get('*').contains('Video requested. You will be notified when it is ready to download');
+		// cy.wait(4000)
+		// cy.get('.fa-refresh').click()
+		// cy.wait(4000)
+		// cy.get('*').contains('Manual request')
+		// cy.wait(2000)
 	})
 
-	after(function() {
-	    // runs once after all tests in the block
-	    cy.logOut('Log out')
-	 })
+	// after(function() {
+	//     // runs once after all tests in the block
+	//     cy.logOut('Log out')
+	//  })
 
 })

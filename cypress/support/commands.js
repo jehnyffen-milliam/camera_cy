@@ -107,10 +107,11 @@ Cypress.Commands.add('setDateRequestVideo', (textDate) => {
 
 Cypress.Commands.add('setTimeRequestVideo', (h) => {
   cy.get('.rc-time-picker-input').click({force:true})
-  cy.get('#time').click({force:true})
-  cy.get('#time').clear({force:true})
+  cy.wait(1000)
+  cy.get('.rc-time-picker-panel-input').click({force:true})
+  cy.get('.rc-time-picker-panel-input').clear({force:true})
   // cy.get('.rc-time-picker-input').clear({force:true})
-  cy.get('#time').type(h, {force:true})
+  cy.get('.rc-time-picker-panel-input').type(h, {force:true})
   // // cy.get('input[type="text"].rc-time-picker-input').clear().type(textTime, { force: true })
   // cy.get('rc-time-picker-panel-combobox > div:nth-child(1)').contains(h).click({ force: true })
   // cy.get('rc-time-picker-panel-combobox > div:nth-child(2)').contains(m).click({ force: true })
