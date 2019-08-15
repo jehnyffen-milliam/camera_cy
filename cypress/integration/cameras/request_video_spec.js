@@ -28,10 +28,6 @@ describe('Validate Request Video', function(){
 		// cy.visit('http://move.transpoco.net')
 		// cy.login('jehnyffen.milliam@transpoco.com', '0128@Milliamj')
 		// cy.menuCamera();
-		const setTime = () => {
-		  document.getElementsById("time").click()
-		  document.getElementsById("time").textContent = "01:00:15"
-		}
 		cy.wait(4000)
 		cy.clickAllVehicleGoups()
 		cy.clickStartDate('13/08/2019')
