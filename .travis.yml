@@ -7,9 +7,9 @@ services:
 
 before_script:
   - mkdir -p ~/docker-images
-  - [[ -f ~/docker-images/included:3.4.0.tgz ]] && docker load -i ~/docker-images/included:3.4.0.tgz
+  - [[ -f ~/docker-images/included.tgz ]] && docker load -i ~/docker-images/included.tgz
   - docker pull cypress/included:3.4.0
-  - docker save cypress/included:3.4.0 | gzip -c > ~/docker-images/included:3.4.0.tgz
+  - docker save cypress/included:3.4.0 | gzip -c > ~/docker-images/included.tgz
 
 script:
   - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=bda27b52-019f-4fe1-a879-20202a07f99d cypress/included:3.4.0 --record
