@@ -6,4 +6,4 @@ services:
   - docker
 
 script:
-  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=bda27b52-019f-4fe1-a879-20202a07f99d cypress/included:3.4.0 --record --parallel --ci-build-id travis
+  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=bda27b52-019f-4fe1-a879-20202a07f99d cypress/included:3.4.0 --record --parallel --ci-build-id build1
