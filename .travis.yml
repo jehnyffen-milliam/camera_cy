@@ -6,4 +6,11 @@ services:
   - docker
 
 script:
-  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=bda27b52-019f-4fe1-a879-20202a07f99d cypress/included:3.4.0 --record --parallel --ci-build-id build1
+  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --record --parallel --group $CI_THREAD_INDEX
+
+name: "Cy test 1"
+env: CI_THREAD_INDEX=3x-electron
+name: "Cy test 2"
+env: CI_THREAD_INDEX=3x-electron
+name: "Cy test 3"
+env: CI_THREAD_INDEX=3x-electron
