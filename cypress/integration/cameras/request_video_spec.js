@@ -34,7 +34,7 @@ describe('Validate Request Video', function(){
 		cy.get('*').contains('New Message')
 		cy.get('*').contains('Video requested. You will be notified when it is ready to download');
 		cy.wait(4000)
-		cy.get('.fa-refresh').click()
+		cy.get('.fa-refresh').click({force:true})
 		cy.wait(4000)
 		cy.get('*').contains('Manual request')
 		cy.wait(2000)

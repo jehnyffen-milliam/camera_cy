@@ -105,17 +105,18 @@ Cypress.Commands.add('setDateRequestVideo', (textDate) => {
   cy.get('div.modal-body > div > div:nth-child(2) > div:nth-child(1) > div > div > div > div.SingleDatePickerInput.SingleDatePickerInput_1.SingleDatePickerInput__withBorder.SingleDatePickerInput__withBorder_2.SingleDatePickerInput__block.SingleDatePickerInput__block_3 > div > input').clear().type(textDate, { force: true })
 })
 
+Cypress.Commands.add('clickPlayVideo', (vehicle, date) => {
+  cy.get('*').contains(vehicle).parentsUntil('.rt-tr-group')
+  .and('contain', date)
+  .find('.fa-play').click({force:true})
+})
+
 Cypress.Commands.add('setTimeRequestVideo', (h) => {
   cy.get('.rc-time-picker-input').click({force:true})
   cy.wait(1000)
   cy.get('.rc-time-picker-panel-input').click({force:true})
   cy.get('.rc-time-picker-panel-input').clear({force:true})
-  // cy.get('.rc-time-picker-input').clear({force:true})
   cy.get('.rc-time-picker-panel-input').type(h, {force:true})
-  // // cy.get('input[type="text"].rc-time-picker-input').clear().type(textTime, { force: true })
-  // cy.get('rc-time-picker-panel-combobox > div:nth-child(1)').contains(h).click({ force: true })
-  // cy.get('rc-time-picker-panel-combobox > div:nth-child(2)').contains(m).click({ force: true })
-  // cy.get('rc-time-picker-panel-combobox > div:nth-child(3)').contains(s).click({ force: true })
 })
 
 Cypress.Commands.add('clickButton', (textButton) => {
