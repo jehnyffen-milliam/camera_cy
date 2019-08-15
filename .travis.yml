@@ -27,6 +27,16 @@ addons:
   apt:
     packages:
     - libgconf-2-4
+    
+cache:
+  # cache both npm modules and Cypress binary
+  directories:
+    - ~/.npm
+    - ~/.cache
+  # install dependencies and check that Cypress can run
+  override:
+    - npm ci
+    - npm run cy:verify
 
 defaults: &defaults
   script:
