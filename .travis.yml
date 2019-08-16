@@ -7,7 +7,7 @@ services:
 
 script:
 #  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY -e CYPRESS_VIDEO_RECORDING=1 cypress/included:3.4.0 --parallel --group $TESTFOLDER --ci-build-id TRAVIS_BUILD_ID
-  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_VIDEO_RECORDING=1 cypress/included:3.4.0 --parallel --group $TESTFOLDER --ci-build-id TRAVIS_BUILD_ID
+  - docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.4.0 --record --parallel --group $TESTFOLDER --ci-build-id TRAVIS_BUILD_ID
 
 env: 
   - TESTFOLDER=integration/cameras/group_1/
