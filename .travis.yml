@@ -20,13 +20,10 @@ node_js: "10"
 testSmokeCy: &testSmokeCy
   script:
 #  - $(npm bin)/wait-on http-get://localhost:4200/#
-  - npm run cy:run:smoke -- --record --parallel --group smoke-tests
+  - npm run cy:run:smoke -- --record --parallel --group smoke-tests --ci-build-id TRAVIS_BUILD_ID
     # after all tests finish running we need
   # to kill all background jobs (like "npm start &")
   - kill $(jobs -p) || true
-
-testPostDeploy: &testPostDeploy
-  script: CYPRESS_baseUrl=$BASE_URL npm run cy:run:all -- --record --parallel --group $GROUP_NAME --ci-build-id PostDeploy-$GROUP_NAME-$TRAVIS_BUILD_ID
 
 install:
 - npm ci
@@ -34,7 +31,7 @@ install:
 jobs:
   fast_finish: true
   allow_failures:
-  - name: "Cypress Applitools Snapshot tests"
+  - name: "Cypress Snapshot tests"
   include:
   # precache npm and apt dependencies
   #    - stage: precache
