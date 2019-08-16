@@ -30,10 +30,10 @@ jobs:
     name: "Cypress Tests 2d thread"
     <<: *testSmokeCy
   - script:
-    name: "Cypress Tests 3t thread"
+    name: "Cypress Tests 3d thread"
     <<: *testSmokeCy
   - script:
-    name: "Cypress Tests 4t thread"
+    name: "Cypress Tests 4d thread"
     <<: *testSmokeCy
 
 cache:
