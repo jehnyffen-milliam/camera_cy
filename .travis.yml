@@ -2,9 +2,6 @@ sudo: false
 language: node_js
 node_js: "10"
 
-services:
-  - docker
-
 testSmokeCy: &testSmokeCy
   script:
   - npm run cy:run:smoke -- --record --key $CY_KEY --parallel --group cypress-parallel --ci-build-id TRAVIS_BUILD_ID
@@ -20,23 +17,22 @@ install:
 jobs:
   fast_finish: true
   allow_failures:
-  - name: "Cypress Snapshot tests"
   include:
-  - stage: "Publish"
+  - stage: 
     install: true
     script:
     - npm ci
   - script:
-    name: "Cypress Tests 1t thread"
+    name: "Cypress Node 1"
     <<: *testSmokeCy
   - script:
-    name: "Cypress Tests 2d thread"
+    name: "Cypress Node 2"
     <<: *testSmokeCy
   - script:
-    name: "Cypress Tests 3d thread"
+    name: "Cypress Node 3"
     <<: *testSmokeCy
   - script:
-    name: "Cypress Tests 4d thread"
+    name: "Cypress Node 4"
     <<: *testSmokeCy
 
 cache:
