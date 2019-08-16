@@ -20,7 +20,7 @@ node_js: "10"
 testSmokeCy: &testSmokeCy
   script:
 #  - $(npm bin)/wait-on http-get://localhost:4200/#
-  - npm run cy:run:smoke -- --record --parallel --group smoke-tests --ci-build-id TRAVIS_BUILD_ID
+  - npm run cy:run:smoke -- --record --key $CY_KEY --parallel --group smoke-tests --ci-build-id TRAVIS_BUILD_ID
     # after all tests finish running we need
   # to kill all background jobs (like "npm start &")
   - kill $(jobs -p) || true
@@ -50,16 +50,16 @@ jobs:
   #          packages:
   #          - g++-4.8
   # run in parallel
-  - stage: "Publish to ngx-bootstrap-ci"
+  - stage: "Publish"
     install: true
     script:
     - npm ci
   #   test
   - script:
-    name: "Cypress Smoke Tests 1t thread"
+    name: "Cypress Tests 1t thread"
     <<: *testSmokeCy
   - script:
-    name: "Cypress Smoke Tests 2d thread"
+    name: "Cypress Tests 2d thread"
     <<: *testSmokeCy
 
 
