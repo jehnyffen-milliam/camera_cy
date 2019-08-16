@@ -11,5 +11,7 @@ script:
 - script:
   name: "Node_1"
   env: TESTFOLDER=integration/cameras/group_1/
+  
+- script:
   name: "Node_2"
   env: TESTFOLDER=integration/cameras/group_2/
