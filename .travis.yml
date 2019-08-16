@@ -25,6 +25,10 @@ testSmokeCy: &testSmokeCy
   # to kill all background jobs (like "npm start &")
   - kill $(jobs -p) || true
 
+before_install:
+- sudo apt-get install libgconf-2-4
+- npm install tslint
+
 install:
 - npm ci
 
