@@ -8,10 +8,6 @@ services:
 script:
   - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --parallel --group $TESTFOLDER --ci-build-id TRAVIS_BUILD_ID
 
-- script:
-  name: "Node_1"
-  env: TESTFOLDER=integration/cameras/group_1/
-  
-- script:
-  name: "Node_2"
-  env: TESTFOLDER=integration/cameras/group_2/
+env: 
+  - TESTFOLDER=integration/cameras/group_1/
+  - TESTFOLDER=integration/cameras/group_2/
