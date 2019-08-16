@@ -5,5 +5,5 @@ sudo: required
 services:
   - docker
 
-install:
-  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=bda27b52-019f-4fe1-a879-20202a07f99d cypress/included:3.4.0 --record
+script:
+  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --record --parallel --group $CI_THREAD_INDEX --ci-build-id TRAVIS_BUILD_ID
