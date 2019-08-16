@@ -1,28 +1,10 @@
-#language: bash
-#
-#sudo: required
-#
-#services:
-#  - docker
-#
-#script:
-#  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --record --parallel --group $TESTFOLDER --ci-build-id TRAVIS_BUILD_ID
-#
-#env: 
-#  - TESTFOLDER=integration/cameras/group_1/
-#  - TESTFOLDER=integration/cameras/group_2/
-
 sudo: false
 language: node_js
 node_js: "10"
 
-#     test cypress smoke
 testSmokeCy: &testSmokeCy
   script:
-#  - $(npm bin)/wait-on http-get://localhost:4200/#
   - npm run cy:run:smoke -- --record --key $CY_KEY --parallel --group smoke-tests --ci-build-id TRAVIS_BUILD_ID
-    # after all tests finish running we need
-  # to kill all background jobs (like "npm start &")
   - kill $(jobs -p) || true
 
 before_install:
@@ -37,31 +19,22 @@ jobs:
   allow_failures:
   - name: "Cypress Snapshot tests"
   include:
-  # precache npm and apt dependencies
-  #    - stage: precache
-  #      install: npm ci
-  #      script: true
-  #      addons:
-  #        chrome: stable
-  #        apt:
-  #          sources:
-  #          - ubuntu-toolchain-r-test
-  #          # required by node-gyp to build some packages
-  #          packages:
-  #          - g++-4.8
-  # run in parallel
   - stage: "Publish"
     install: true
     script:
     - npm ci
-  #   test
   - script:
     name: "Cypress Tests 1t thread"
     <<: *testSmokeCy
   - script:
     name: "Cypress Tests 2d thread"
     <<: *testSmokeCy
-
+  - script:
+    name: "Cypress Tests 3t thread"
+    <<: *testSmokeCy
+  - script:
+    name: "Cypress Tests 4t thread"
+    <<: *testSmokeCy
 
 cache:
   apt: true
