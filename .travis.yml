@@ -54,7 +54,6 @@ jobs:
     script:
     - npm ci
     - npm run build
-    - npm run ci:update-pkg
     - npm publish --tag $TRAVIS_COMMIT
     skip_cleanup: true
     on:
