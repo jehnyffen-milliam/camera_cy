@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cypress:open": "cypress open",
-    "cy:run:smoke": "cypress run --config integrationFolder=cypress/integration"
+    "cy:run:smoke": "docker run -it -v $PWD:/e2e -w /e2e --config integrationFolder=cypress/integration"
   },
   "author": "",
   "license": "ISC",
