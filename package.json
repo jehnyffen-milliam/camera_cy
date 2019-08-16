@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cy:run:smoke": "APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress/integration"
   },
   "author": "",
   "license": "ISC",
