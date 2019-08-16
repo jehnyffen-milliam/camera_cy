@@ -53,11 +53,7 @@ jobs:
     install: true
     script:
     - npm ci
-    - npm run build
     - npm publish --tag $TRAVIS_COMMIT
-    skip_cleanup: true
-    on:
-      all_branches: true
   #   test
   - script:
     name: "Cypress Smoke Tests 1t thread"
