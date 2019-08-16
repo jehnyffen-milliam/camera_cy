@@ -6,7 +6,7 @@ services:
   - docker
 
 script:
-  - docker build -t transpoco/cypress:1.0
+  - docker build -t transpoco/cypress:1.0 .
   - docker run -it transpoco/cypress:1.0
 #  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --record --parallel --group $CI_THREAD_INDEX --ci-build-id build2
 
