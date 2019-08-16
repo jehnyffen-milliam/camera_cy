@@ -1,6 +1,8 @@
 FROM cypress/base:10.11.0
 
-COPY . /e2e
+WORKDIR /e2e
+
+COPY . .
 
 RUN npm install --save-dev cypress
 
