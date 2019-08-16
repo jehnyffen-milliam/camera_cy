@@ -1,75 +1,18 @@
-#language: bash
-#
-#sudo: required
-#
-#services:
-#  - docker
-#
-#script:
+language: bash
+
+sudo: required
+
+services:
+  - docker
+
+script:
+  - docker build -t transpoco/cypress:1.0
+  - docker run -it transpoco/cypress:1.0
 #  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --record --parallel --group $CI_THREAD_INDEX --ci-build-id build2
-#
+
 #name: "Cy test 1"
 #env: CI_THREAD_INDEX=3x-electron
 #name: "Cy test 2"
 #env: CI_THREAD_INDEX=3x-electron
 #name: "Cy test 3"
 #env: CI_THREAD_INDEX=3x-electron
-
-language: node_js
-
-node_js:
-  # Node 10.3+ includes npm@6 which has good "npm ci" command
-  - 10.8
-
-# if using Ubuntu 16 need this library
-# https://github.com/cypress-io/cypress-documentation/pull/1647
-addons:
-  apt:
-    packages:
-    - libgconf-2-4
-    
-cache:
-  # cache both npm modules and Cypress binary
-  directories:
-    - ~/.npm
-    - ~/.cache
-  # install dependencies and check that Cypress can run
-  override:
-    - npm ci
-    - npm run cy:verify
-
-defaults: &defaults
-  script:
-    #   ## print all Travis environment variables for debugging
-    - $(npm bin)/print-env TRAVIS
-    - npm run start:ci &
-    - npm run cy:run -- --record --parallel --group $STAGE_NAME
-    # after all tests finish running we need
-    # to kill all background jobs (like "npm start &")
-    - kill $(jobs -p) || true
-
-jobs:
-  include:
-    # we have multiple jobs to execute using just a single stage
-    # but we can pass group name via environment variable to Cypress test runner
-    - stage: test
-      env:
-        - STAGE_NAME="1x-electron on Travis CI"
-      <<: *defaults
-    # run tests in parallel by including several test jobs with same name variable
-    - stage: test
-      env:
-        - STAGE_NAME="4x-electron on Travis CI"
-      <<: *defaults
-    - stage: test
-      env:
-        - STAGE_NAME="4x-electron on Travis CI"
-      <<: *defaults
-    - stage: test
-      env:
-        - STAGE_NAME="4x-electron on Travis CI"
-      <<: *defaults
-    - stage: test
-      env:
-        - STAGE_NAME="4x-electron on Travis CI"
-      <<: *defaults
