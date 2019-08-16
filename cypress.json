@@ -5,6 +5,7 @@
   "screenshotsFolder": "cypress/screenshots",
   "videosFolder": "cypress/videos",
   "videoUploadOnPasses": false,
+  "video": false,
 
   "viewportWidth": 1960,
   "viewportHeight": 1080,
