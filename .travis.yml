@@ -1,0 +1,44 @@
+sudo: false
+language: node_js
+node_js: "10"
+
+testSmokeCy: &testSmokeCy
+  script:
+  - npm run cy:run:smoke -- --record --key $CY_KEY --parallel --group cypress-parallel --ci-build-id TRAVIS_BUILD_ID
+  - kill $(jobs -p) || true
+
+before_install:
+- sudo apt-get install libgconf-2-4
+- npm install tslint
+
+install:
+- npm ci
+
+jobs:
+  fast_finish: true
+  allow_failures:
+  include:
+  - stage: 
+    install: true
+    script:
+    - npm ci
+  - script:
+    name: "Cypress Node 1"
+    <<: *testSmokeCy
+  - script:
+    name: "Cypress Node 2"
+    <<: *testSmokeCy
+  - script:
+    name: "Cypress Node 3"
+    <<: *testSmokeCy
+  - script:
+    name: "Cypress Node 4"
+    <<: *testSmokeCy
+
+cache:
+  apt: true
+  npm: true
+  directories:
+  - node_modules
+  - ~/.npm
+  - ~/.cache
