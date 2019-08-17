@@ -40,9 +40,6 @@ jobs:
   - script:
     name: "Cypress Node 6"
     <<: *testSmokeCy
-  - script:
-    name: "Cypress Node 7"
-    <<: *testSmokeCy
 
 cache:
   apt: true
