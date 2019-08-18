@@ -5,8 +5,8 @@ service:
 
 testSmokeCy: &testSmokeCy
   script:
-  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --record --parallel --group cypress-parallel-docker --ci-build-id TRAVIS_BUILD_ID
-  # - kill $(jobs -p) || true
+  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --record --parallel --ci-build-id TRAVIS_BUILD_ID
+  - kill $(jobs -p) || true
 
 jobs:
   fast_finish: true
@@ -15,8 +15,8 @@ jobs:
   - stage: "Tests"
     name: "Cypress Tests"
     install: true
-#    script:
-#    - npm ci
+    script:
+    - npm ci
   - script:
     name: "Cypress Container 1"
     <<: *testSmokeCy
