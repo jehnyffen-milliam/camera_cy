@@ -5,7 +5,7 @@ service:
 
 testSmokeCy: &testSmokeCy
   script:
-  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --record --parallel --group cypress-parallel-docker --ci-build-id TRAVIS_BUILD_ID apt-get install libgconf-2-4 -y
+  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --record --parallel --group cypress-parallel-docker --ci-build-id TRAVIS_BUILD_ID
   - kill $(jobs -p) || true
 
 jobs:
@@ -17,14 +17,14 @@ jobs:
     script:
     - npm ci
   - script:
-    name: "Cypress Node 1"
+    name: "Cypress Container 1"
     <<: *testSmokeCy
   - script:
-    name: "Cypress Node 2"
+    name: "Cypress Container 2"
     <<: *testSmokeCy
   - script:
-    name: "Cypress Node 3"
+    name: "Cypress Container 3"
     <<: *testSmokeCy
   - script:
-    name: "Cypress Node 4"
+    name: "Cypress Container 4"
     <<: *testSmokeCy
