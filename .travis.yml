@@ -7,7 +7,7 @@ service:
 
 testSmokeCy: &testSmokeCy
   script:
-  - docker run -it -v $PWD:/usr/src/app -e CYPRESS_RECORD_KEY=$CY_KEY transpoco/cypress -- --record --parallel --group cypress-parallel --ci-build-id TRAVIS_BUILD_ID
+  - docker run -it -v $PWD:/usr/src/app -e CYPRESS_RECORD_KEY=$CY_KEY transpoco/cypress --record --parallel --group cypress-parallel --ci-build-id TRAVIS_BUILD_ID
   - kill $(jobs -p) || true
 
 before_install:
