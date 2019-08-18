@@ -1,17 +1,12 @@
 sudo: false
-language: node_js
-node_js: "10"
 
 service:
   - docker
-# Test
+
 testSmokeCy: &testSmokeCy
   script:
-  - docker run -it -v $PWD:/usr/src/app -e CYPRESS_RECORD_KEY=$CY_KEY transpoco/cypress
+  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --record --parallel --ci-build-id TRAVIS_BUILD_ID
   - kill $(jobs -p) || true
-
-before_install:
-- docker build -t transpoco/cypress .
 
 jobs:
   fast_finish: true
@@ -33,11 +28,3 @@ jobs:
   - script:
     name: "Cypress Node 4"
     <<: *testSmokeCy
-
-cache:
-  apt: true
-  npm: true
-  directories:
-  - node_modules
-  - ~/.npm
-  - ~/.cache
