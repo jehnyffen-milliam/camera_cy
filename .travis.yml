@@ -4,7 +4,7 @@ node_js: "10"
 
 service:
   - docker
-
+# Test
 testSmokeCy: &testSmokeCy
   script:
   - docker run -it -v $PWD:/usr/src/app -e CYPRESS_RECORD_KEY=$CY_KEY transpoco/cypress
