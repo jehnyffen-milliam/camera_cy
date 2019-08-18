@@ -1,11 +1,11 @@
-sudo: false
+sudo: true
 
 service:
   - docker
 
 testSmokeCy: &testSmokeCy
   script:
-  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.1 --record --parallel --ci-build-id TRAVIS_BUILD_ID
+  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --record --parallel --group cypress-parallel-docker --ci-build-id TRAVIS_BUILD_ID
   - kill $(jobs -p) || true
 
 jobs:
