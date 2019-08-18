@@ -1,4 +1,4 @@
-sudo: true
+sudo: false
 
 service:
   - docker
@@ -12,11 +12,6 @@ jobs:
   fast_finish: true
   allow_failures:
   include:
-#  - stage: "Tests"
-#    name: "Cypress Tests"
-#    install: true
-#    script:
-#    - npm ci
   - script:
     name: "Cypress Container 1"
     <<: *testSmokeCy
