@@ -12,10 +12,11 @@ jobs:
   fast_finish: true
   allow_failures:
   include:
-  - stage: 
+  - stage: "Tests"
+    name: "Cypress Tests"
     install: true
-    script:
-    - npm ci
+#    script:
+#    - npm ci
   - script:
     name: "Cypress Container 1"
     <<: *testSmokeCy
@@ -28,11 +29,3 @@ jobs:
   - script:
     name: "Cypress Container 4"
     <<: *testSmokeCy
-
-cache:
-  apt: true
-  docker: true
-  directories:
-  - node_modules
-  - ~/.docker
-  - ~/.cache
