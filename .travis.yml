@@ -5,7 +5,7 @@ service:
 
 testSmokeCy: &testSmokeCy
   script:
-  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY --rm cypress/included:3.4.0 --record --parallel --group cypress-parallel-docker --ci-build-id TRAVIS_BUILD_ID
+  - docker run --rm -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --record --parallel --group cypress-parallel-docker --ci-build-id TRAVIS_BUILD_ID
   - kill $(jobs -p) || true
 
 jobs:
@@ -28,3 +28,11 @@ jobs:
   - script:
     name: "Cypress Container 4"
     <<: *testSmokeCy
+
+cache:
+  apt: true
+  docker: true
+  directories:
+  - node_modules
+  - ~/.docker
+  - ~/.cache
