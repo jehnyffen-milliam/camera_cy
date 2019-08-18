@@ -5,12 +5,7 @@ service:
 
 testSmokeCy: &testSmokeCy
   script:
-  - docker run \
-  -it -v $PWD:/e2e -w /e2e \
-  -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 \
-  --record --parallel --group cypress-parallel-docker \
-  --ci-build-id TRAVIS_BUILD_ID apt-get install libgconf-2-4 -y
-  
+  - docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_RECORD_KEY=$CY_KEY cypress/included:3.4.0 --record --parallel --group cypress-parallel-docker --ci-build-id TRAVIS_BUILD_ID apt-get install libgconf-2-4 -y
   - kill $(jobs -p) || true
 
 jobs:
