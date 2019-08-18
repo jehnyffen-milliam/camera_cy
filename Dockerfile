@@ -11,4 +11,4 @@ RUN apt-get install libgconf-2-4 -y
 RUN npm install tslint -y
 RUN npm ci
 
-CMD ["npm", "run", "cy:run:smoke"]
+CMD ["npm", "run", "cy:run:smoke", "--record", "--parallel", "--group cypress-parallel"]
