@@ -10,7 +10,7 @@ testSmokeCy: &testSmokeCy
 before_install:
 - sudo apt-get install libgconf-2-4
 - npm install tslint
-- export CYPRESS_PROJECT_ID={37a69p}
+- sudo export CYPRESS_PROJECT_ID={37a69p}
 
 install:
 - npm ci
