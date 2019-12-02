@@ -25,27 +25,19 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('login', (email, pass) => {
-    if(!cy.get('#username')){
-      cy.logOut('Log out')
-      cy.wait(2000)
-    }
-
-    var textLogin = '';
-    if(cy.get('button').contains('Login')){
-      textLogin = 'Login';
-    } else if(cy.get('button').contains('Connexion')) {
-      textLogin = 'Connexion';
-    } else {
-      textLogin = 'Iniciar sesión';
-    }
+  
+  // cy.wait(5000)
+  // cy.contains('Vehicle Group')
+  // cy.log('existe 2 = ' + cy.get('#username').length)
+  // cy.log('Existe = ' + Cypress.$('#username').length)
+  // if(Cypress.$('#username').length){
     cy.get('#username').type(email)
     cy.get('#password').type(pass)
-    cy.get('button').contains(textLogin).click()
+    cy.get('button').contains('Login').click()
     cy.contains('Transpoco')
     cy.contains('Vehicle Group')
     cy.wait(2000)
-    // cy.screenshot('Home', 'fullPage')
-    
+  // }
     
 })
 
@@ -61,7 +53,7 @@ Cypress.Commands.add('loginTranslate', (title, email, pass, textLogin) => {
 })
 
 Cypress.Commands.add('menuCamera', () => {
-	cy.contains('Camera')
+  cy.contains('Camera')
   cy.get('a').contains('Camera').click({ force: true }) // this comand force click in element even this element stay disable or display none by css
   cy.wait(2000)
   cy.contains('Vehicle')
@@ -105,18 +97,17 @@ Cypress.Commands.add('setDateRequestVideo', (textDate) => {
   cy.get('div.modal-body > div > div:nth-child(2) > div:nth-child(1) > div > div > div > div.SingleDatePickerInput.SingleDatePickerInput_1.SingleDatePickerInput__withBorder.SingleDatePickerInput__withBorder_2.SingleDatePickerInput__block.SingleDatePickerInput__block_3 > div > input').clear().type(textDate, { force: true })
 })
 
-Cypress.Commands.add('clickPlayVideo', (vehicle, date) => {
-  cy.get('*').contains(vehicle).parentsUntil('.rt-tr-group')
-  .and('contain', date)
-  .find('.fa-play').click({force:true})
-})
-
 Cypress.Commands.add('setTimeRequestVideo', (h) => {
   cy.get('.rc-time-picker-input').click({force:true})
   cy.wait(1000)
   cy.get('.rc-time-picker-panel-input').click({force:true})
   cy.get('.rc-time-picker-panel-input').clear({force:true})
+  // cy.get('.rc-time-picker-input').clear({force:true})
   cy.get('.rc-time-picker-panel-input').type(h, {force:true})
+  // // cy.get('input[type="text"].rc-time-picker-input').clear().type(textTime, { force: true })
+  // cy.get('rc-time-picker-panel-combobox > div:nth-child(1)').contains(h).click({ force: true })
+  // cy.get('rc-time-picker-panel-combobox > div:nth-child(2)').contains(m).click({ force: true })
+  // cy.get('rc-time-picker-panel-combobox > div:nth-child(3)').contains(s).click({ force: true })
 })
 
 Cypress.Commands.add('clickButton', (textButton) => {
@@ -183,11 +174,25 @@ Cypress.Commands.add('clickScreenshotByVehicle2', (vehicle, date) => {
   .find('.fa-picture-o').click()
 })
 
+Cypress.Commands.add('clickPlayVideo', (vehicle, date) => {
+  cy.get('*').contains(vehicle).parentsUntil('.rt-tr-group')
+  .and('contain', date)
+  .find('.fa-play').click({force:true})
+})
+
 Cypress.Commands.add('clickScreenshotByVehicle3', (vehicle, date, speed) => {
   cy.get('*').contains(vehicle).parentsUntil('.rt-tr-group')
   .and('contain', date)
   .and('contain', speed)
   .find('.fa-picture-o').click()
+})
+
+Cypress.Commands.add('validateDateRequested', (vehicle, event, date, dateResquest) => {
+  cy.get('*').contains(vehicle).parentsUntil('.rt-tr-group')
+  .and('contain', event)
+  .and('contain', date)
+  .and('contain', dateResquest)
+  .find('.fa-play')
 })
 
 // // Cypress.Commands.add('clickRequestVideoByVehicle', vehicle => {
