@@ -1,6 +1,9 @@
 const user = Cypress.env('user')
 const pass = Cypress.env('pass')
 describe('Validate Cameras Text', function(){
+	it('Should Access InpectLet', function() {
+		cy.visit('https://www.inspectlet.com/exclude/1351548925')
+	})
 	
 	it('Access login page', function() {
 		cy.visit('/')

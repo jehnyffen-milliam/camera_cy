@@ -1,8 +1,13 @@
 const user = Cypress.env('user')
 const pass = Cypress.env('pass')
 
-describe('Validate Cameras Filters', function(){
-	before(function () {
+describe('Validate Cameras Filters Group vehicles', function(){
+
+	it('Should Access InpectLet', function() {
+		cy.visit('https://www.inspectlet.com/exclude/1351548925')
+	})
+
+	it('Access Login', function() {
 
 		cy.visit('/')
 
@@ -71,5 +76,10 @@ describe('Validate Cameras Filters', function(){
 		cy.wait(2000)
 		cy.screenshot('specific-vehicle-group-specific-vehicle', 'fullPage')
 	})
+
+	after(function() {
+	    // runs once after all tests in the block
+	    cy.logOut('Log out')
+	 })
 
 })

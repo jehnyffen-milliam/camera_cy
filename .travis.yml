@@ -4,7 +4,8 @@ node_js: "10"
 
 testSmokeCy: &testSmokeCy
   script:
-  - npm run cy:run:smoke -- --record --key $CY_KEY --parallel --group cypress-parallel --ci-build-id TRAVIS_BUILD_ID
+  #- npm run cy:run:smoke -- --record --key $CY_KEY --parallel --group cypress-parallel --ci-build-id TRAVIS_BUILD_ID
+  - npm run cy:run:smoke -- --record --key $CY_KEY --browser chrome --parallel --group cypress-parallel --ci-build-id TRAVIS_BUILD_ID
   - kill $(jobs -p) || true
 
 before_install:

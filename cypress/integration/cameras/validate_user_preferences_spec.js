@@ -2,17 +2,26 @@ const user = Cypress.env('user3')
 const pass = Cypress.env('pass3')
 const userName = 'jehnyffen'
 describe('Validate Preference Users KM and Miles', function(){
-	beforeEach(function () {
+	
+	// it('Access login', function() {
+	// 	cy.visit('/')
+	// 	cy.reload()
+	// })
 
+	it('Should Access InpectLet', function() {
+		cy.visit('https://www.inspectlet.com/exclude/1351548925')
+	})
+
+	it('Access login', function(){
 		cy.visit('/')
-
 		cy.login(user, pass)
-
 	})
 
 	it('Validate KM Preference', function(){
-		cy.clickMenu('Settings')
 
+		cy.clickMenu('Settings')
+		cy.login(user, pass)
+		cy.clickMenu('Settings')
 		cy.contains('Users & Permissions')
 		cy.get('a').contains('Users').click({ force: true })
 		cy.contains('Search:');
@@ -44,7 +53,8 @@ describe('Validate Preference Users KM and Miles', function(){
 
 	it('Validate Miles Preference', function(){
 		cy.clickMenu('Settings')
-
+		cy.login(user, pass)
+		cy.clickMenu('Settings')
 		cy.contains('Users & Permissions')
 		cy.get('a').contains('Users').click({ force: true })
 		cy.contains('Search:');
@@ -75,7 +85,8 @@ describe('Validate Preference Users KM and Miles', function(){
 
 	it('Validate KM Preference', function(){
 		cy.clickMenu('Settings')
-
+		cy.login(user, pass)
+		cy.clickMenu('Settings')
 		cy.contains('Users & Permissions')
 		cy.get('a').contains('Users').click({ force: true })
 		cy.contains('Search:');

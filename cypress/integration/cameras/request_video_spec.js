@@ -1,7 +1,12 @@
 const user = Cypress.env('user')
 const pass = Cypress.env('pass')
 describe('Validate Request Video', function(){
-	before(function () {
+
+	it('Should Access InpectLet', function() {
+		cy.visit('https://www.inspectlet.com/exclude/1351548925')
+	})
+	
+	it('Access Menu camera', function(){
 		cy.visit('/')
 
 		cy.login(user, pass)
@@ -20,7 +25,7 @@ describe('Validate Request Video', function(){
 		cy.wait(3000)
 		cy.get('*').contains('161WW1467')
 		cy.get('*').contains('Request Video')
-		cy.wait(4000)
+		cy.wait(3000)
 		cy.get('*').contains('Request Video').click({force:true})
 		cy.wait(1000)
 		cy.get('.modal-title').contains('Request Video')
@@ -38,6 +43,17 @@ describe('Validate Request Video', function(){
 		cy.wait(4000)
 		cy.get('*').contains('Manual request')
 		cy.wait(2000)
+	})
+
+	it('Validate request date', function(){
+		cy.clickAllVehicleGoups()
+		cy.clickStartDate('13/08/2019')
+		cy.clickEndDate('14/08/2019')
+
+		cy.clickButton('Apply Filter')
+		cy.wait(4000)
+		cy.validateDateRequested('Manual request', '161WW1467 ', '2019-08-14 13:06:42', '2019-08-14 17:58:22')
+		// cy.clickScreenshotByVehicle2('161WW1467 ','2019-08-14 17:58:22')
 	})
 
 	after(function() {

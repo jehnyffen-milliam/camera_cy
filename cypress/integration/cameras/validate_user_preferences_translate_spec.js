@@ -3,7 +3,12 @@ const pass = Cypress.env('pass4')
 const userName = 'jehnyffen'
 describe('Validate Preference Users Translate', function(){
 
-	before(function () {
+	
+	it('Should Access InpectLet', function() {
+		cy.visit('https://www.inspectlet.com/exclude/1351548925')
+	})
+
+	it('Access login', function() {
 
 		cy.visit('/')
 
@@ -13,7 +18,8 @@ describe('Validate Preference Users Translate', function(){
 	// This test the application should be with English Language
 	it('Validate French Language', function(){
 		cy.clickMenu('Settings')
-
+		cy.login(user, pass)
+		cy.clickMenu('Settings')
 		cy.contains('Users & Permissions')
 		cy.get('a').contains('Users').click({ force: true })
 		cy.contains('Search:');
@@ -56,6 +62,10 @@ describe('Validate Preference Users Translate', function(){
 		cy.contains('Paramètres')
 		cy.clickMenu('Paramètres')
 
+		// cy.loginTranslate('Mon compte', user, pass, 'Connexion')
+		// cy.contains('Paramètres')
+		// cy.clickMenu('Paramètres')
+
 		cy.contains('Utilisateurs & Autorisations')
 		cy.get('a').contains('Utilisateurs').click({ force: true })
 		cy.contains('Rechercher');
@@ -81,7 +91,8 @@ describe('Validate Preference Users Translate', function(){
 			  'Página de inicio'
 			, 'Evento'
 			, 'Vehículo'
-			, 'Fecha y hora'
+			, 'Video Date'
+			, 'Date Requested'
 			, 'Velocidad'
 			, 'Vídeo (s)'
 		]
@@ -95,6 +106,10 @@ describe('Validate Preference Users Translate', function(){
 		cy.loginTranslate('Iniciar sesión', user, pass, 'Iniciar sesión')
 		cy.contains('Configuración')
 		cy.clickMenu('Configuración')
+
+		// cy.loginTranslate('Iniciar sesión', user, pass, 'Iniciar sesión')
+		// cy.contains('Configuración')
+		// cy.clickMenu('Configuración')
 
 		cy.contains('Usuarios y permisos')
 		cy.get('a').contains('Usuarios').click({ force: true })
